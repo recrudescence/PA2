@@ -229,6 +229,8 @@ class MovieData
 	##
 	# Returns a floating point number between 1.0 and 5.0
 	# as an estimate of what user u would rate movie m.
+	# A better algorithm (for another time): look at most_similar users to user, get the movie ratings
+	# of the most similar users, and use that average as the prediction. 
 	def predict user_id, movie_id
 		if m_stats[movie_id] != nil
 			@num_predictions += 1

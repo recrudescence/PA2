@@ -17,9 +17,9 @@ def load
 		id = $stdin.gets.chomp
 
 		puts "Number of ratings to run tests on"
-		print "(anything else to quit): "
+		print "(return for all ratings): "
 
-		num = $stdin.gets.chomp.to_i
+		num = $stdin.gets.chomp
 
 		run_tests(id, num)
 
@@ -32,18 +32,23 @@ def load
 end
 
 def run_tests file = nil, num_tests = nil
-	puts "\nCreating MovieData object..."
-	x = MovieData.new("ml-100k", file)
-	test = x.load_data()
 
-	puts "Running test..."
-	x.run_test(num_tests)
+	if !File.file?("ml-100k/#{file}.test") 
+		puts "File #{file} not found."
+	else
+		puts "\nCreating MovieData object..."
+		x = MovieData.new("ml-100k", file)
+		test = x.load_data()
 
-	puts """
-	Test set mean error: #{x.movie_test.mean}
-	Test set std dev: #{x.movie_test.stddev}
-	Test set root mean square: #{x.movie_test.rms}
-	"""
+		puts "Running test..."
+		x.run_test(num_tests)
+
+		puts """
+		Test set mean error: #{x.movie_test.mean}
+		Test set std dev: #{x.movie_test.stddev}
+		Test set root mean square: #{x.movie_test.rms}
+		"""
+	end
 end
 
 def view_info link
