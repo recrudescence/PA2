@@ -12,10 +12,16 @@ def load
 
 	if prompt == 'yes'
 		puts "\nFile name (u1 to u5)"
-		print "(return to quit): "
+		print "(anything else to quit): "
 
 		id = $stdin.gets.chomp
-		run_tests(id)
+
+		puts "Number of ratings to run tests on"
+		print "(anything else to quit): "
+
+		num = $stdin.gets.chomp.to_i
+
+		run_tests(id, num)
 
 	elsif prompt == 'no'
 		view_info("ml-100k")
@@ -25,13 +31,13 @@ def load
 	end
 end
 
-def run_tests file = nil
+def run_tests file = nil, num_tests = nil
 	puts "\nCreating MovieData object..."
 	x = MovieData.new("ml-100k", file)
 	test = x.load_data()
 
 	puts "Running test..."
-	x.run_test
+	x.run_test(num_tests)
 
 	puts """
 	Test set mean: #{x.movie_test.mean}
