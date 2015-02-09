@@ -13,10 +13,10 @@ class MovieTest
 	##
 	# Insert a tuple into MovieTest with user, movie, rating, and prediction info.
 	def add params
-		user 			= params[:user]
+		user 				= params[:user]
 		movie 			= params[:movie]
 		rating 			= params[:rating]
-		prediction 		= params[:prediction]
+		prediction 	= params[:prediction]
 		list_of_results.push(Test.new(user, movie, rating, prediction))
 	end
 

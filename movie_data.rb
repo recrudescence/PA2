@@ -9,7 +9,7 @@ class MovieData
 	require "./bst.rb"
 	require "./movie_test.rb"
 
-	attr_reader	:folder, :debug, :user_reviews, :m_stats, :movie_test
+	attr_reader	:folder, :debug, :user_reviews, :m_stats, :movie_test, :num_predictions
 
 	# Movie structure storing the count, sum, and average ratings,
 	# as well as an array of users that watched this movie.
@@ -36,6 +36,7 @@ class MovieData
 			@test_set_file = "#{test}.test"
 		end
 
+		@num_predictions = 0
 		@movie_test = MovieTest.new
 
 		@user_reviews = Hash.new
@@ -229,7 +230,10 @@ class MovieData
 	# Returns a floating point number between 1.0 and 5.0
 	# as an estimate of what user u would rate movie m.
 	def predict user_id, movie_id
-		if m_stats[movie_id] != nil then return m_stats[movie_id].average_r else return 2.5 end
+		if m_stats[movie_id] != nil
+			@num_predictions += 1
+			return m_stats[movie_id].average_r
+		else return 2.5 end
 	end
 
 	##
@@ -275,7 +279,7 @@ class MovieData
 
 	 	#puts movie_test.list_of_results.size
 
-	 	puts "Time spent running test: #{(Time.now - time).round(2)} seconds."
+	 	puts "Time spent running #{@num_predictions} predictions: #{(Time.now - time)} seconds.	"
 	end
 
 end

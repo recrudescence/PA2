@@ -40,7 +40,7 @@ def run_tests file = nil, num_tests = nil
 	x.run_test(num_tests)
 
 	puts """
-	Test set mean: #{x.movie_test.mean}
+	Test set mean error: #{x.movie_test.mean}
 	Test set std dev: #{x.movie_test.stddev}
 	Test set root mean square: #{x.movie_test.rms}
 	"""

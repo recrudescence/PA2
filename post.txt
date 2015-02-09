@@ -1,0 +1,8 @@
+https://codeclimate.com/github/recrudescence/PA2
+https://github.com/recrudescence/PA2
+
+The current algorithm is extremely simple. It goes through every rating for the given movie and finds the average rating, and predicts that rating for the user. The advantage of this is simplicity and speed. However, this is not a very accurate algorithm as it does not look at anything else.
+
+Experiments show that the mean error is around 0.03 to 0.05, and the root mean square stays around 0.2 when running tests on all the ratings. This is pretty good, I think, meaning the predictions are pretty close to the true values.
+
+Each prediction takes about 0.000002 to 0.000003 seconds. Predictions run on one rating (~1375 or so predictions) takes about 0.003 seconds. This time increases linearly as rating number increases: 10 ratings takes about 0.03, 100 0.3, and so on. Time complexity is thus around O(n).
